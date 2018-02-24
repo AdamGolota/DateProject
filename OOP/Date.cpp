@@ -64,7 +64,7 @@ int Date::setDate(const int & day, const int & month, const int & year)
 		return 1;
 }
 
-bool Date::leapYear(const int & year)
+bool Date::isleapYear(const int & year)
 {
 	return year % 4 == 0 && !(year % 100 == 0 && (year/100) % 4 != 0);
 }
@@ -72,7 +72,7 @@ bool Date::leapYear(const int & year)
 bool Date::dateCorrect(const int & day, const int & month, const int & year)
 {
 	int daysPerMonth[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	daysPerMonth[1] += leapYear(year);
+	daysPerMonth[1] += isleapYear(year);
 	bool monthCorrect = month > 0 && month < 13;
 	bool dayCorrect = day > 0 && day <= daysPerMonth[month-1];
 	return monthCorrect && dayCorrect;
